@@ -1,0 +1,22 @@
+{% extends "store/main.html" %}
+{% block content %}
+<main id="main" class="main">
+  <div class="pagetitle"><h1>{{ title|default:"Store Form" }}</h1></div>
+
+  <div class="card"><div class="card-body pt-3">
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button class="btn btn-primary" type="submit">Save</button>
+      <a class="btn btn-secondary" href="{% url 'store_list' %}">Back</a>
+    </form>
+  </div></div>
+</main>
+{% endblock %}
+<style>
+  body { font-family: Arial; margin: 40px; }
+  form { width: 400px; }
+  button { padding: 8px 15px; }
+</style>
+</body>
+</html>
