@@ -1,0 +1,71 @@
+{% extends "store/main.html" %}
+{% block content %}
+
+<main id="main" class="main">
+
+  <div class="pagetitle">
+    <h1>Add Store</h1>
+  </div>
+
+  <section class="section">
+    <div class="card">
+      <div class="card-body pt-3">
+
+        <form method="post" enctype="multipart/form-data" class="row g-3">
+          {% csrf_token %}
+
+          <div class="col-12">
+            {{ form.name.label_tag }}
+            {{ form.name }}
+          </div>
+
+          <div class="col-12">
+            {{ form.description.label_tag }}
+            {{ form.description }}
+          </div>
+
+          <div class="col-12">
+            {{ form.address.label_tag }}
+            {{ form.address }}
+          </div>
+
+          <div class="col-md-6">
+            {{ form.phone_number.label_tag }}
+            {{ form.phone_number }}
+          </div>
+
+          <div class="col-md-6">
+            {{ form.email.label_tag }}
+            {{ form.email }}
+          </div>
+
+          <div class="col-12">
+            {{ form.doc.label_tag }}
+            {{ form.doc }}
+          </div>
+
+          <div class="col-md-6">
+            {{ form.gender.label_tag }}
+            {{ form.gender }}
+          </div>
+
+          <div class="col-md-6 d-flex align-items-center">
+            <div class="form-check mt-4">
+              {{ form.is_active }}
+              {{ form.is_active.label_tag }}
+            </div>
+          </div>
+
+          <div class="col-12">
+            <button class="btn btn-primary" type="submit">Save</button>
+            <a class="btn btn-secondary" href="{% url 'store_list' %}">Back</a>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+{% endblock %}

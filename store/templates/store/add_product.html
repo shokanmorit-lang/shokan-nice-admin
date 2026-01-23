@@ -1,0 +1,49 @@
+{% extends "store/main.html" %}
+{% block content %}
+
+<main id="main" class="main">
+
+  <div class="pagetitle">
+<h1>Add Product (Admin Only)</h1>  </div>
+
+  <section class="section">
+    <div class="card">
+      <div class="card-body pt-3">
+
+        <form method="post" class="row g-3">
+          {% csrf_token %}
+
+          <div class="col-md-6">
+            {{ form.store.label_tag }}
+            {{ form.store }}
+          </div>
+
+          <div class="col-md-6">
+            {{ form.category.label_tag }}
+            {{ form.category }}
+          </div>
+
+          <div class="col-12">
+            {{ form.name.label_tag }}
+            {{ form.name }}
+          </div>
+
+          <div class="col-md-6">
+            {{ form.price.label_tag }}
+            {{ form.price }}
+          </div>
+
+          <div class="col-12">
+            <button class="btn btn-primary" type="submit">Save</button>
+            <a class="btn btn-secondary" href="{% url 'product_list' %}">Back</a>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+{% endblock %}

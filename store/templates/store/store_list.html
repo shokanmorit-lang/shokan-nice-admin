@@ -1,0 +1,69 @@
+{% extends "store/main.html" %}
+
+{% block content %}
+<main id="main" class="main">
+
+  <div class="pagetitle">
+    <h1>Stores</h1>
+  </div>
+
+  {# زر الإضافة يظهر فقط للمشرف #}
+  {% if request.user.is_staff %}
+    <a class="btn btn-primary mb-3" href="{% url 'add_store' %}">
+      Add Store
+    </a>
+  {% endif %}
+
+  <div class="card">
+    <div class="card-body">
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Store Name</th>
+            {% if request.user.is_staff %}
+              <th>Actions</th>
+            {% endif %}
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for s in stores %}
+          <tr>
+            <td>{{ s }}</td>
+
+            {% if request.user.is_staff %}
+            <td>
+              <a class="btn btn-sm btn-warning"
+                 href="{% url 'store_edit' s.id %}">
+                 Edit
+              </a>
+
+              <form method="post"
+                    action="{% url 'store_delete' s.id %}"
+                    style="display:inline;">
+                {% csrf_token %}
+                <button class="btn btn-sm btn-danger" type="submit">
+                  Delete
+                </button>
+              </form>
+            </td>
+            {% endif %}
+
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="2" class="text-center text-muted">
+              No stores available
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+
+      </table>
+
+    </div>
+  </div>
+
+</main>
+{% endblock %}

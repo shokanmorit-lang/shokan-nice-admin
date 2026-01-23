@@ -1,0 +1,53 @@
+{% extends "store/main.html" %}
+{% block content %}
+<main id="main" class="main">
+  <div class="pagetitle"><h1>Products</h1></div>
+
+{% if request.user.is_staff %}
+  <a class="btn btn-primary mb-3" href="{% url 'add_product' %}">Add Product</a>
+{% endif %}
+  <div class="card">
+    <div class="card-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th><th>Price</th><th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for p in products %}
+          <tr>
+            <td>{{ p }}</td>
+            <td>{{ p.price }}</td>
+            <td>
+{% if request.user.is_staff %}
+  <a class="btn btn-sm btn-warning" href="{% url 'product_edit' p.id %}">Edit</a>
+  <form method="post" ...>
+{% endif %}              <form method="post" action="{% url 'product_delete' p.id %}" style="display:inline;">
+                {% csrf_token %}
+                <button class="btn btn-sm btn-danger" type="submit">Delete</button>
+              </form>
+            </td>
+          </tr>
+          {% empty %}
+          <tr><td colspan="3">No products</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+{% endblock %}
+<style>
+  body { font-family: Arial; margin: 40px; }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { padding: 10px; border: 1px solid #ccc; text-align: left; }
+  th { background-color: #f4f4f4; }
+  .btn { padding: 6px 12px; text-decoration: none; margin-right: 5px; }
+    .btn-primary { background-color: #007bff; color: white; }
+    .btn-warning { background-color: #ffc107; color: black; }
+    .btn-danger { background-color: #dc3545; color: white; border:
+    none; }
+</style>
+</body>
+</html>

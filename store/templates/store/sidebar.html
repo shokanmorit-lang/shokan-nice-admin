@@ -1,0 +1,95 @@
+<aside id="sidebar" class="sidebar">
+  <ul class="sidebar-nav" id="sidebar-nav">
+
+    <!-- Dashboard -->
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'dashboard' %}">
+        <i class="bi bi-grid"></i><span>Dashboard</span>
+      </a>
+    </li>
+
+    <!-- Store Section -->
+    <li class="nav-heading">Store Management</li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="{% url 'store_list' %}">
+        <i class="bi bi-shop"></i><span>Stores</span>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="{% url 'product_list' %}">
+        <i class="bi bi-bag"></i><span>Products</span>
+      </a>
+    </li>
+
+    <!-- Admin Only Section -->
+    {% if request.user.is_staff %}
+    <li class="nav-heading">Admin Tools</li>
+
+    <!-- Charts (Demo) -->
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-bar-chart"></i><span>Charts (Demo)</span>
+        <i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="charts-nav" class="nav-content collapse">
+        <li>
+          <a href="{% url 'charts-apexcharts' %}">
+            <i class="bi bi-circle"></i><span>ApexCharts</span>
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'charts-chartjs' %}">
+            <i class="bi bi-circle"></i><span>Chart.js</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+
+    <!-- Forms (Demo) -->
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-journal-text"></i><span>Forms (Demo)</span>
+        <i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="forms-nav" class="nav-content collapse">
+        <li>
+          <a href="{% url 'forms-elements' %}">
+            <i class="bi bi-circle"></i><span>Form Elements</span>
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'forms-validation' %}">
+            <i class="bi bi-circle"></i><span>Form Validation</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="{% url 'tables-data' %}">
+        <i class="bi bi-layout-text-window-reverse"></i>
+        <span>Tables (Demo)</span>
+      </a>
+    </li>
+    {% endif %}
+
+    <!-- User Section -->
+    <li class="nav-heading">User</li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="{% url 'profile' %}">
+        <i class="bi bi-person"></i><span>Profile</span>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="{% url 'logout' %}">
+        <i class="bi bi-box-arrow-right"></i><span>Logout</span>
+      </a>
+    </li>
+
+  </ul>
+</aside>
+<!-- End Sidebar -->
