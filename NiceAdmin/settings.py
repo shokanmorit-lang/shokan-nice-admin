@@ -39,6 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'store',
+    "shokan-nice-admin.onrender.com",
+    ".onrender.com",
+    "localhost",
+    "127.0.0.1",
 ]
 
 MIDDLEWARE = [
